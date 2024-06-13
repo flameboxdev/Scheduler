@@ -42,7 +42,7 @@ try {
     catch (e) {
     return {
         status: "error",
-        times: ['', 'неожиданное время', 'неизвестное время']
+        times: ''
     }
 
             }
