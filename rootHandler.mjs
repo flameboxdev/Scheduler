@@ -1,5 +1,6 @@
 import axios from 'axios'
-import config from './config.json' assert { type: "json"}
+import config from './rasp.Data/config.json' assert { type: "json"}
+
 
 const rootHandler = async (direction, day_sign, subject) => {
 
@@ -7,9 +8,9 @@ try {
 
         const req = config.reqURI
         const d = dateRequest(day_sign);
-        const sH = subject ? subject.getStation() : config.DefaultStation;
-        const a = direction === 'w' ? sH : config.WorkStation;
-        const b = direction === 'w' ? config.WorkStation : sH;
+
+        const a = direction === 'w' ? subject.sH : subject.sW;
+        const b = direction === 'w' ? subject.sW : subject.sH;
 
         const response = await axios.get(req, {
             headers: {
@@ -61,5 +62,8 @@ const dateRequest = (p) => {
     return y + formattedM + '-' + formattedD
 
 }
+
+
+
 
 export default rootHandler
